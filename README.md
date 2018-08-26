@@ -1,2 +1,2 @@
 # RepasPlanner
-Repas Planner
+Repas Planner : Application de gestion des repas
