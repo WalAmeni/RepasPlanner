@@ -2,9 +2,8 @@ package org.repasplanner.gui;
 
 import java.util.List;
 
+import org.repasplanner.dao.RecetteRepository;
 import org.repasplanner.model.Recette;
-
-import com.google.common.collect.Lists;
 
 public class JourPanelController {
 
@@ -21,7 +20,10 @@ public class JourPanelController {
 	}
 
 	public List<Recette> findAllRecette() {
-		return Lists.newArrayList();
+		//List<Recette> listeRecettes = new ArrayList<>();
+		RecetteRepository recRepository = RecetteRepository.getInstance();
+		List<Recette> listeRecettes = recRepository.findAll();		
+		return listeRecettes;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.BoxLayout;
@@ -11,6 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import org.repasplanner.model.Ingredient;
+import org.repasplanner.service.RecetteController;
 
 public class FenetreMenu extends JFrame {
 	/**
@@ -77,6 +81,10 @@ public class FenetreMenu extends JFrame {
 			for (Map.Entry<String, Integer> entry : mapRecettePersonne.entrySet()) {
 				System.out.println(entry.getKey() + " " + entry.getValue());
 			}
+			//liste de course
+			System.out.println("Liste de course");
+			List<Ingredient> listeCourse = new RecetteController().createListeCourses(mapRecettePersonne);
+            listeCourse.forEach(i -> System.out.println(i));		
 		}
 	}
 

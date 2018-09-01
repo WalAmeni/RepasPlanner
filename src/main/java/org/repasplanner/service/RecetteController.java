@@ -15,24 +15,27 @@ public class RecetteController {
 	private RecetteRepository recetteRepository =  RecetteRepository.getInstance();
 	private IngredientRepository ingredientRepository =  IngredientRepository.getInstance();
 
-	// creation du web service et methode a lancer
-	public List<Recette> findAllRecette() {
-		List<Recette> listeRecette = recetteRepository.findAll();
-		for (Recette r : listeRecette) {
-			List<Ingredient> ingredients = ingredientRepository.findIngredientByIdRecette(r.getId());
-			r.setIngredients(ingredients);
-		}
-		return listeRecette;
-	}
+//	// creation du web service et methode a lancer
+//	public List<Recette> findAllRecette() {
+//		List<Recette> listeRecette = recetteRepository.findAll();
+//		for (Recette r : listeRecette) {
+//			List<Ingredient> ingredients = ingredientRepository.findIngredientByIdRecette(r.getId());
+//			r.setIngredients(ingredients);
+//		}
+//		return listeRecette;
+//	}
 
 	public List<Ingredient> createListeCourses(HashMap<String, Integer> mapRecettePersonne) {
 		List<Ingredient> listeIngredientAll = new ArrayList<Ingredient>();
 		for (Map.Entry<String, Integer> entry : mapRecettePersonne.entrySet()) {
-			Recette recette = recetteRepository.getRecetteByNom(entry.getKey()).get(0);
+			System.out.println(entry.getKey()+ " "+entry.getValue());
+			Recette recette = recetteRepository.getRecetteByNom(entry.getKey());
+			System.out.println(recette.getNom());
 			List<Ingredient> listeIngredientByRecette = getIngredientByRecette(recette, entry.getValue());
 			for (Ingredient i : listeIngredientByRecette) {
 				listeIngredientAll.add(i);
 			}
+			
 		}
 		return listeIngredientAll;
 	}
@@ -43,8 +46,10 @@ public class RecetteController {
 		int nbPersonneRecette = recette.getNombrePersonne();
 		for (Ingredient i : listeIngredientInit) {
 			double quantite = i.getQuantite();
-			quantite *= (nbPersonne / nbPersonneRecette);
-			i.setQuantite(quantite);
+			//System.out.println(i.getNom());
+			//System.out.println("quantite initiale"+ quantite);
+			quantite = (quantite * nbPersonne) / nbPersonneRecette;
+			//System.out.println("quantite finale"+ quantite);
 			listeIngredient.add(i);
 		}
 		return listeIngredient;

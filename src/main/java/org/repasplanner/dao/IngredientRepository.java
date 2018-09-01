@@ -60,20 +60,20 @@ public class IngredientRepository {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		ingredients.forEach(e -> System.out.println(e));
+		//ingredients.forEach(e -> System.out.println(e));
 		return ingredients;
 	}
 
-	public List<Ingredient> findIngredientByNomRecette(String nomRecette) {
-		// TODO
-//		String sqlRequest = "select * from ingredient where nomRecette = ?";
-		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-		// Ingredient i = new Ingredient();
-		// i.setNom((String) e.get("nomIngredient"));
-		// i.setQuantite((double) e.get("quantite"));
-		// i.setUnite((String) e.get("unite"));
-		// i.setType(TypeIngredient.getByName((String) e.get("type")));
-		// ingredients.add(i);
-		return ingredients;
-	}
+//	public List<Ingredient> findIngredientByNomRecette(String nomRecette) {
+//		// TODO
+////		String sqlRequest = "select * from ingredient where nomRecette = ?";
+//		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+//		// Ingredient i = new Ingredient();
+//		// i.setNom((String) e.get("nomIngredient"));
+//		// i.setQuantite((double) e.get("quantite"));
+//		// i.setUnite((String) e.get("unite"));
+//		// i.setType(TypeIngredient.getByName((String) e.get("type")));
+//		// ingredients.add(i);
+//		return ingredients;
+//	}
 }

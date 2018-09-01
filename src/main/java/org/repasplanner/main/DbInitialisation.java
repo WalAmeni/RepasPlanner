@@ -22,6 +22,7 @@ public class DbInitialisation {
 	 *  the command line arguments
 	 */
 	public static void main(String[] args) {
+		TableCreationDao.dropAllTables();
 		TableCreationDao.createAllTables();
 		TableDataDao.initTables();
 		RecetteRepository recRepository = RecetteRepository.getInstance();

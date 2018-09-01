@@ -22,11 +22,24 @@ public class TableCreationDao {
 	private TableCreationDao() {
 	}
 
-	public static void createAllTables() {
+	public static void createAllTables() {		
 		createRecetteTable();
 		createIngredientTable();
 	}
-
+	public static void dropAllTables() {
+		dropTable("Recette");
+		dropTable("Ingredient");
+	}
+	private static void dropTable(String tableName) {
+		try (Connection conn = DriverManager.getConnection(DaoProperties.DB_URL);
+				Statement stmt = conn.createStatement()) {
+			String sql = "DROP TABLE IF EXISTS "+ tableName;
+			stmt.execute(sql);
+			LOGGER.info(tableName +" table is dropped");
+		} catch (SQLException e) {
+			LOGGER.error("Cannot drop table " + tableName, e);
+		}
+	}
 	private static void createIngredientTable() {
 		String sql = "CREATE TABLE IF NOT EXISTS ingredient ( nomIngredient varchar(255) not null,"
 				+ "  type varchar(255) not null," + " quantite double not null," + " unite varchar(255) not null,"
