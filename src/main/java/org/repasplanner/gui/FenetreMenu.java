@@ -3,6 +3,7 @@ package org.repasplanner.gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.repasplanner.model.Ingredient;
+import org.repasplanner.service.ListeFileWriter;
 import org.repasplanner.service.RecetteController;
 
 public class FenetreMenu extends JFrame {
@@ -60,6 +62,7 @@ public class FenetreMenu extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
+			LocalDate localDate = LocalDate.now();
 			for (JourSemaine jour : JourSemaine.values()) {
 				// System.out.println(jour);
 				JourPanel jourPanel = mapJourPanel.get(jour);
@@ -82,9 +85,11 @@ public class FenetreMenu extends JFrame {
 				System.out.println(entry.getKey() + " " + entry.getValue());
 			}
 			//liste de course
-			System.out.println("Liste de course");
+			//System.out.println("Liste de course");
 			List<Ingredient> listeCourse = new RecetteController().createListeCourses(mapRecettePersonne);
-            listeCourse.forEach(i -> System.out.println(i));		
+			//listeCourse.forEach(i -> System.out.println(i));	           
+			ListeFileWriter.writeListeDeCourse(listeCourse);
+			JOptionPane.showMessageDialog(null, "La liste de course est créée dans "+"D:\\JAVA\\listeDeCourse"+localDate+".txt");
 		}
 	}
 

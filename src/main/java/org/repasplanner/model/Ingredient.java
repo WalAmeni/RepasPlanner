@@ -1,5 +1,7 @@
 package org.repasplanner.model;
 
+import java.util.Optional;
+
 public class Ingredient {
 	private String nom;
 	private TypeIngredient type;
@@ -37,10 +39,13 @@ public class Ingredient {
 	public void setUnite(String unite) {
 		this.unite = unite;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "Ingredient [nom=" + nom + ", type=" + type + ", quantite=" + quantite + ", unite=" + unite + "]";
 	}
+
+
 
 }
